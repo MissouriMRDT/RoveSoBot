@@ -1,3 +1,7 @@
+#RoveSoBot
+config.json
+build/
+
 # Logs
 logs
 *.log
