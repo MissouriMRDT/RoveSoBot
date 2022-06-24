@@ -27,7 +27,21 @@ class LunchTrain extends Command {
     }
 
     async execute(interaction: CommandInteraction<CacheType>): Promise<void> {
-        const time = moment(interaction.options.getString("time"), ["h:m a"]);
+        const time = moment(
+            interaction.options.getString("time"),
+            ["h:m", "h:m a"],
+            true
+        );
+
+        // If moment parses it as a previous time, add twelve hours.
+        if (time < moment()) {
+            time.add(12, "hours");
+        }
+
+        // Do it again if we're still behind
+        if (time < moment()) {
+            time.add(12, "hours");
+        }
 
         await interaction.reply(moment(time).calendar());
     }

@@ -1,31 +1,32 @@
 import fs from "fs";
 import path from "path";
-import { Client, Intents, Collection } from "discord.js";
+import { Client, Intents, Collection, Interaction } from "discord.js";
 import { RESTPostAPIApplicationCommandsJSONBody } from "discord-api-types/v9";
-
-const configJSON = path.join(__dirname, "../../config.json");
-let config: any = {};
-if (fs.existsSync(configJSON)) {
-  config = JSON.parse(fs.readFileSync(configJSON).toString());
-}
+import { commands } from "./commands/commandHandler";
+import config from "../config.json";
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-const eventsPath = path.join(__dirname, "events");
-const eventFiles = fs
-  .readdirSync(eventsPath)
-  .filter((file) => file.endsWith(".js"));
+client.once("ready", (client: Client) => {
+    console.log(`Ready! Logged in as ${client.user?.tag}`);
+});
 
-for (const file of eventFiles) {
-  const filePath = path.join(eventsPath, file);
-  const event = require(filePath);
-  if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args));
-  } else {
-    client.on(event.name, (...args) => event.execute(...args));
-  }
-}
+client.on("interactionCreate", async (interaction: Interaction) => {
+    if (!interaction.isCommand()) return;
+
+    const command = commands.get(interaction.commandName);
+
+    if (!command) return;
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({
+            content: "There was an error while executing this command!",
+            ephemeral: true,
+        });
+    }
+});
 
 client.login(config.token);
-
-export { config };
