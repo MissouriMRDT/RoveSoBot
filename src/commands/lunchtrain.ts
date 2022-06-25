@@ -56,7 +56,29 @@ class LunchTrain extends Command {
                     channel as GuildTextBasedChannel
                 ).messages.fetch(train.get("message") as string);
 
-                message.reply(`All Aboard! The train is leaving the station!`);
+                let tags = "";
+                const data: { joined: string[] } = JSON.parse(
+                    JSON.stringify(train.get("members") as any)
+                );
+                data.joined.push(train.get("conductor") as string);
+                if (data.joined.length == 1) {
+                    tags += `${client.users.cache.get(data.joined[0])}`;
+                } else {
+                    data.joined.map((id, index) => {
+                        if (
+                            index != data.joined.length - 1 &&
+                            client.users.cache.get(id)
+                        )
+                            return `${client.users.cache.get(id)}, `;
+                        else return `and ${client.users.cache.get(id)}`;
+                    });
+                }
+
+                message.reply(
+                    "All Aboard! The train is leaving the station. " +
+                        tags +
+                        (tags.length > 0 ? " should get going!" : "")
+                );
                 await Trains.destroy({
                     where: {
                         id: train.get("id"),

@@ -32,21 +32,53 @@ async function joinTrain(interaction: ButtonInteraction) {
                 } at ${moment
                     .unix(train.get("time") as number)
                     .format("h:mm a")}. ${data.joined.map((id, index) => {
-                    if (data.joined.length == 1)
+                    if (data.joined.length == 1 && client.users.cache.get(id))
                         return `${client.users.cache.get(id)} has`;
-                    if (index != data.joined.length - 1)
+                    if (
+                        index != data.joined.length - 1 &&
+                        client.users.cache.get(id)
+                    )
                         return `${client.users.cache.get(id)}, `;
                     else return `and ${client.users.cache.get(id)} have`;
                 })} joined; Hop in!`,
             });
+        } else if (data.joined.includes(interaction.user.id)) {
+            data.joined.splice(data.joined.indexOf(interaction.user.id), 1);
+            train.set({ members: data });
+            await train.save();
+
+            interaction.update({
+                content: ` ${client.users.cache.get(
+                    train.get("conductor") as string
+                )} created a Lunch Train to ${
+                    train.get("place") as string
+                } at ${moment
+                    .unix(train.get("time") as number)
+                    .format("h:mm a")}. ${data.joined.map((id, index) => {
+                    if (data.joined.length == 1 && client.users.cache.get(id))
+                        return `${client.users.cache.get(id)} has joined- `;
+                    if (
+                        index != data.joined.length - 1 &&
+                        client.users.cache.get(id)
+                    )
+                        return `${client.users.cache.get(id)}, `;
+                    else
+                        return `and ${client.users.cache.get(
+                            id
+                        )} have joined- `;
+                })}Hop in!`,
+            });
         } else {
             interaction.reply({
-                content: "You've already joined!",
+                content: "The conductor can't leave!",
                 ephemeral: true,
             });
         }
     } else {
-        console.error("Unable to find train for interaction: ", interaction);
+        interaction.reply({
+            content: "That train already left",
+            ephemeral: true,
+        });
     }
 }
 
