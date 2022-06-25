@@ -1,9 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { Client, Intents, Collection, Interaction } from "discord.js";
-import { RESTPostAPIApplicationCommandsJSONBody } from "discord-api-types/v9";
-import { commands } from "./commands/commandHandler";
+import { Client, Intents, Interaction } from "discord.js";
 import config from "../config.json";
+import { processButton } from "./buttons/buttonHandler";
+import { commands } from "./commands/commandHandler";
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -12,21 +10,33 @@ client.once("ready", (client: Client) => {
 });
 
 client.on("interactionCreate", async (interaction: Interaction) => {
-    if (!interaction.isCommand()) return;
+    if (interaction.isCommand()) {
+        const command = commands.get(interaction.commandName);
 
-    const command = commands.get(interaction.commandName);
+        if (!command) return;
 
-    if (!command) return;
-
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        console.error(error);
-        await interaction.reply({
-            content: "There was an error while executing this command!",
-            ephemeral: true,
-        });
+        try {
+            await command.execute(interaction);
+        } catch (error) {
+            console.error(error);
+            await interaction.reply({
+                content: "There was an error while executing this command!",
+                ephemeral: true,
+            });
+        }
+    } else if (interaction.isButton()) {
+        try {
+            await processButton(interaction);
+        } catch (error) {
+            console.error(error);
+            await interaction.reply({
+                content: "There was an error processing your request!",
+                ephemeral: true,
+            });
+        }
     }
 });
 
 client.login(config.token);
+
+export { client };

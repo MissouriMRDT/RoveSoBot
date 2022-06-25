@@ -1,6 +1,7 @@
 #RoveSoBot
 config.json
 build/
+*.sqlite
 
 # Logs
 logs
