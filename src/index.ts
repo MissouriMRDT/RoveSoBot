@@ -2,11 +2,13 @@ import { Client, Intents, Interaction } from "discord.js";
 import config from "../config.json";
 import { processButton } from "./buttons/buttonHandler";
 import { commands } from "./commands/commandHandler";
+import { setupHandler } from "./util/trainLeaveHandler";
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.once("ready", (client: Client) => {
     console.log(`Ready! Logged in as ${client.user?.tag}`);
+    setupHandler();
 });
 
 client.on("interactionCreate", async (interaction: Interaction) => {

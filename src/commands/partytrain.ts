@@ -13,11 +13,12 @@ import { Command } from "./command";
 import { Op } from "sequelize";
 import { client } from "../index";
 import { createTrain } from "../util/createTrain";
-class LunchTrain extends Command {
+
+class PartyTrain extends Command {
     constructor() {
         super(
             new SlashCommandBuilder()
-                .setName("lunchtrain")
+                .setName("partytrain")
                 .addStringOption((option) =>
                     option
                         .setName("location")
@@ -32,7 +33,7 @@ class LunchTrain extends Command {
                         )
                         .setRequired(true)
                 )
-                .setDescription("Starts a Lunch Train")
+                .setDescription("Starts a Party Train")
         );
     }
 
@@ -61,8 +62,8 @@ class LunchTrain extends Command {
             time.add(12, "hours");
         }
 
-        await createTrain(interaction, time, "lunch");
+        await createTrain(interaction, time, "party");
     }
 }
 
-export { LunchTrain };
+export { PartyTrain };
