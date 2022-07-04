@@ -20,10 +20,10 @@ async function createTrain(
 
     await interaction.reply({
         content: ` ${interaction.user} created a ${
-            type == "lunch" ? "Lunch" : "Party"
-        } Train to ${interaction.options.getString(
-            "location"
-        )} at ${time.format("h:mm a")}. Join up!`,
+            type == "lunch" ? "Lunch Train" : "Party Bus"
+        } to ${interaction.options.getString("location")} at ${time.format(
+            "h:mm a"
+        )}. Join up!`,
         components: [row],
     });
 

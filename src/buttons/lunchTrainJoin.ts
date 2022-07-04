@@ -27,20 +27,25 @@ async function joinTrain(interaction: ButtonInteraction) {
             interaction.update({
                 content: ` ${client.users.cache.get(
                     train.get("conductor") as string
-                )} created a Lunch Train to ${
-                    train.get("place") as string
-                } at ${moment
+                )} created a ${
+                    (train.get("trainType") as string) == "lunch"
+                        ? "Lunch Train"
+                        : "Party Bus"
+                } to ${train.get("place") as string} at ${moment
                     .unix(train.get("time") as number)
-                    .format("h:mm a")}. ${data.joined.map((id, index) => {
+                    .format("h:mm a")}.${data.joined.map((id, index) => {
                     if (data.joined.length == 1 && client.users.cache.get(id))
-                        return `${client.users.cache.get(id)} has`;
+                        return ` ${client.users.cache.get(id)} has joined- `;
                     if (
                         index != data.joined.length - 1 &&
                         client.users.cache.get(id)
                     )
-                        return `${client.users.cache.get(id)}, `;
-                    else return `and ${client.users.cache.get(id)} have`;
-                })} joined; Hop in!`,
+                        return ` ${client.users.cache.get(id)}`;
+                    else
+                        return ` and ${client.users.cache.get(
+                            id
+                        )} have joined- `;
+                })}Hop in!`,
             });
         } else if (data.joined.includes(interaction.user.id)) {
             data.joined.splice(data.joined.indexOf(interaction.user.id), 1);
@@ -50,20 +55,22 @@ async function joinTrain(interaction: ButtonInteraction) {
             interaction.update({
                 content: ` ${client.users.cache.get(
                     train.get("conductor") as string
-                )} created a Lunch Train to ${
-                    train.get("place") as string
-                } at ${moment
+                )} created a ${
+                    (train.get("trainType") as string) == "lunch"
+                        ? "Lunch Train"
+                        : "Party Bus"
+                } to ${train.get("place") as string} at ${moment
                     .unix(train.get("time") as number)
-                    .format("h:mm a")}. ${data.joined.map((id, index) => {
+                    .format("h:mm a")}.${data.joined.map((id, index) => {
                     if (data.joined.length == 1 && client.users.cache.get(id))
-                        return `${client.users.cache.get(id)} has joined- `;
+                        return ` ${client.users.cache.get(id)} has joined- `;
                     if (
                         index != data.joined.length - 1 &&
                         client.users.cache.get(id)
                     )
-                        return `${client.users.cache.get(id)}, `;
+                        return ` ${client.users.cache.get(id)}`;
                     else
-                        return `and ${client.users.cache.get(
+                        return ` and ${client.users.cache.get(
                             id
                         )} have joined- `;
                 })}Hop in!`,

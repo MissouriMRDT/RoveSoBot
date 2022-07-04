@@ -45,19 +45,17 @@ async function setupHandler() {
 
             if ((train.get("trainType") as string) == "lunch") {
                 message.reply(
-                    "All Aboard! Time for lunch. " +
+                    "All Aboard. Time for Lunch! " +
                         tags +
-                        (tags.length > 0
-                            ? ` meet at ${train.get("place") as string}!`
-                            : "")
+                        (tags.length > 0 ? " meet " : "Meet ") +
+                        `at ${train.get("place") as string}!`
                 );
             } else if ((train.get("trainType") as string) == "party") {
                 message.reply(
                     "Time to party! " +
                         tags +
-                        (tags.length > 0
-                            ? ` meet at ${train.get("place") as string}!`
-                            : "")
+                        (tags.length > 0 ? " meet " : "Meet ") +
+                        `at ${train.get("place") as string}!`
                 );
             }
 
