@@ -14,7 +14,7 @@ async function createTrain(
     const row = new MessageActionRow().addComponents(
         new MessageButton()
             .setCustomId("joinTrain")
-            .setLabel("Join the Train!")
+            .setLabel("Join/Leave the Train!")
             .setStyle("PRIMARY")
     );
 
