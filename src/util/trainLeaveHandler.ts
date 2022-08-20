@@ -2,6 +2,7 @@ import { GuildTextBasedChannel } from "discord.js";
 import moment from "moment";
 import { Op } from "sequelize";
 import { Trains } from "../database/roveSoDatabase";
+import { BotStats } from "../database/stats";
 import { client } from "../index";
 
 async function setupHandler() {
@@ -45,7 +46,7 @@ async function setupHandler() {
 
             if ((train.get("trainType") as string) == "lunch") {
                 message.reply(
-                    "All Aboard. Time for Lunch! " +
+                    "All Aboard. Time for food! " +
                         tags +
                         (tags.length > 0 ? " meet " : "Meet ") +
                         `at ${train.get("place") as string}!`
@@ -58,6 +59,11 @@ async function setupHandler() {
                         `at ${train.get("place") as string}!`
                 );
             }
+
+            await BotStats.TrainLaunch(
+                train.get("guild") as string,
+                data.joined.length
+            );
 
             await Trains.destroy({
                 where: {

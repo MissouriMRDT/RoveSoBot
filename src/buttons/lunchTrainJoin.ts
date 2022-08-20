@@ -33,7 +33,9 @@ async function joinTrain(interaction: ButtonInteraction) {
                         : "Party Bus"
                 } to ${train.get("place") as string} at ${moment
                     .unix(train.get("time") as number)
-                    .format("h:mm a")}.${data.joined.map((id, index) => {
+                    .format("h:mm a")} on ${moment
+                    .unix(train.get("time") as number)
+                    .format("MM/DD/YYYY")}.${data.joined.map((id, index) => {
                     if (data.joined.length == 1 && client.users.cache.get(id))
                         return ` ${client.users.cache.get(id)} has joined- `;
                     if (
@@ -61,7 +63,9 @@ async function joinTrain(interaction: ButtonInteraction) {
                         : "Party Bus"
                 } to ${train.get("place") as string} at ${moment
                     .unix(train.get("time") as number)
-                    .format("h:mm a")}.${data.joined.map((id, index) => {
+                    .format("h:mm a")} on ${moment
+                    .unix(train.get("time") as number)
+                    .format("MM/DD/YYYY")}.${data.joined.map((id, index) => {
                     if (data.joined.length == 1 && client.users.cache.get(id))
                         return ` ${client.users.cache.get(id)} has joined- `;
                     if (

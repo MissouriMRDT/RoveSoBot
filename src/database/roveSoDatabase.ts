@@ -14,6 +14,23 @@ try {
     console.error("Unable to connect to DB: ", e);
 }
 
+const Stats = sequelize.define("stats", {
+    guild: {
+        type: DataTypes.STRING(20),
+        primaryKey: true,
+    },
+    trainsDeparted: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
+    PassengersDeparted: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
+});
+
 const Trains = sequelize.define("train", {
     trainType: {
         type: DataTypes.ENUM("lunch", "party"),
@@ -52,4 +69,4 @@ const Trains = sequelize.define("train", {
     await sequelize.sync(/*{ force: true }*/);
 })();
 
-export { Trains };
+export { Trains, Stats };

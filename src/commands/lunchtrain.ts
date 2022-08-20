@@ -28,7 +28,7 @@ class LunchTrain extends Command {
                     option
                         .setName("time")
                         .setDescription(
-                            "What time are you meeting? (Ex: '5:30 pm')"
+                            "What date and time are you meeting? (Ex: '5:30 pm', '8-24 5:30 pm)"
                         )
                         .setRequired(true)
                 )
@@ -38,16 +38,22 @@ class LunchTrain extends Command {
 
     async execute(interaction: CommandInteraction<CacheType>): Promise<void> {
         if (!interaction.inGuild()) {
-            interaction.reply("This command can only be used in servers");
+            interaction.reply({
+                content: "This command can only be used in servers",
+                ephemeral: true,
+            });
             return;
         } else if (!interaction.channel?.isText()) {
-            interaction.reply("This command can only be used in text channels");
+            interaction.reply({
+                content: "This command can only be used in text channels",
+                ephemeral: true,
+            });
             return;
         }
 
         const time = moment(
             interaction.options.getString("time"),
-            ["h:m", "h:m a"],
+            ["h:m a", "M-D h:m a"],
             true
         );
 
@@ -61,7 +67,15 @@ class LunchTrain extends Command {
             time.add(12, "hours");
         }
 
-        await createTrain(interaction, time, "lunch");
+        if (time.isValid()) {
+            await createTrain(interaction, time, "lunch");
+        } else {
+            interaction.reply({
+                content:
+                    "Invalid date/time string. Make sure you follow the format example in the command help.",
+                ephemeral: true,
+            });
+        }
     }
 }
 

@@ -23,7 +23,7 @@ async function createTrain(
             type == "lunch" ? "Lunch Train" : "Party Bus"
         } to ${interaction.options.getString("location")} at ${time.format(
             "h:mm a"
-        )}. Join up!`,
+        )} on ${time.format("MM/DD/YYYY")}. Join up!`,
         components: [row],
     });
 
