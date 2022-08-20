@@ -7,7 +7,8 @@ class Ping extends Command {
         super(
             new SlashCommandBuilder()
                 .setName("ping")
-                .setDescription("Replies with something!")
+                .setDescription("Replies with something!"),
+            false
         );
     }
 

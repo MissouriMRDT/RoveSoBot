@@ -2,7 +2,7 @@ import { GuildTextBasedChannel } from "discord.js";
 import moment from "moment";
 import { Op } from "sequelize";
 import { Trains } from "../database/roveSoDatabase";
-import { BotStats } from "../database/stats";
+import { BotStats } from "../database/botStats";
 import { client } from "../index";
 
 async function setupHandler() {

@@ -32,7 +32,8 @@ class LunchTrain extends Command {
                         )
                         .setRequired(true)
                 )
-                .setDescription("Starts a Lunch Train")
+                .setDescription("Starts a Lunch Train"),
+            false
         );
     }
 

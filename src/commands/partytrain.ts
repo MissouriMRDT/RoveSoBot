@@ -33,7 +33,8 @@ class PartyTrain extends Command {
                         )
                         .setRequired(true)
                 )
-                .setDescription("Starts a Party Train")
+                .setDescription("Starts a Party Train"),
+            false
         );
     }
 

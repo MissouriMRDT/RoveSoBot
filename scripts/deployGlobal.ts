@@ -10,7 +10,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.once("ready", async (client: Client) => {
     const commandsData = [];
     for (const command of commands.values()) {
-        commandsData.push(command.data.toJSON());
+        if (!command.debug) commandsData.push(command.data.toJSON());
     }
 
     if (client.application) {
