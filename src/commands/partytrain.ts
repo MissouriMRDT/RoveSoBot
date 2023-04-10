@@ -45,12 +45,6 @@ class PartyTrain extends Command {
                 ephemeral: true,
             });
             return;
-        } else if (!interaction.channel?.isText()) {
-            interaction.reply({
-                content: "This command can only be used in text channels",
-                ephemeral: true,
-            });
-            return;
         }
 
         const time = moment(
