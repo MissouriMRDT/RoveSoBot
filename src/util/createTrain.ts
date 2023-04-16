@@ -1,21 +1,22 @@
 import {
-    CommandInteraction,
-    MessageActionRow,
-    MessageButton,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    ChatInputCommandInteraction,
 } from "discord.js";
 import moment from "moment";
 import { Trains } from "../database/roveSoDatabase";
 
 async function createTrain(
-    interaction: CommandInteraction,
+    interaction: ChatInputCommandInteraction,
     time: moment.Moment,
     type: "party" | "lunch"
 ) {
-    const row = new MessageActionRow().addComponents(
-        new MessageButton()
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+        new ButtonBuilder()
             .setCustomId("joinTrain")
             .setLabel("Join/Leave the Train!")
-            .setStyle("PRIMARY")
+            .setStyle(ButtonStyle.Primary)
     );
 
     await interaction.reply({

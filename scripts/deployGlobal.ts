@@ -1,11 +1,14 @@
 import fs from "fs";
 import path from "path";
-import { Client, Intents } from "discord.js";
+import { Client, GatewayIntentBits, Partials } from "discord.js";
 import { commands } from "../src/commands/commandHandler";
 import { exit } from "process";
 import config from "../config.json";
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds],
+    partials: [Partials.Channel],
+});
 
 client.once("ready", async (client: Client) => {
     const commandsData = [];

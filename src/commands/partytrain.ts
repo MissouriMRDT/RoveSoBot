@@ -1,11 +1,8 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import {
     CacheType,
+    ChatInputCommandInteraction,
     CommandInteraction,
-    GuildTextBasedChannel,
-    MessageActionRow,
-    MessageButton,
-    TextChannel,
 } from "discord.js";
 import moment from "moment";
 import { Trains } from "../database/roveSoDatabase";
@@ -38,7 +35,9 @@ class PartyTrain extends Command {
         );
     }
 
-    async execute(interaction: CommandInteraction<CacheType>): Promise<void> {
+    async execute(
+        interaction: ChatInputCommandInteraction<CacheType>
+    ): Promise<void> {
         if (!interaction.inGuild()) {
             interaction.reply({
                 content: "This command can only be used in servers",

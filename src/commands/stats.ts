@@ -1,5 +1,8 @@
-import { EmbedBuilder, SlashCommandBuilder } from "@discordjs/builders";
-import { CommandInteraction, MessageEmbed } from "discord.js";
+import {
+    CommandInteraction,
+    EmbedBuilder,
+    SlashCommandBuilder,
+} from "discord.js";
 import { BotStats } from "../database/botStats";
 import { Stats } from "../database/roveSoDatabase";
 import { Command } from "./command";
@@ -24,19 +27,23 @@ class CommandStats extends Command {
         console.log(guildStats?.toJSON());
 
         if (guildStats !== null) {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setTitle("Server Stats")
                 .setColor(0x990000)
-                .addField(
-                    "Trains Departed",
-                    ("" + guildStats.get("trainsDeparted")) as string,
-                    true
-                )
-                .addField(
-                    "Passengers Departed",
-                    ("" + guildStats.get("PassengersDeparted")) as string,
-                    true
-                );
+                .addFields([
+                    {
+                        name: "Trains Departed",
+                        value: ("" +
+                            guildStats.get("trainsDeparted")) as string,
+                        inline: true,
+                    },
+                    {
+                        name: "Passengers Departed",
+                        value: ("" +
+                            guildStats.get("PassengersDeparted")) as string,
+                        inline: true,
+                    },
+                ]);
 
             interaction.reply({ embeds: [embed] });
         } else {

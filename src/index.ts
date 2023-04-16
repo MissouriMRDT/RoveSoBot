@@ -1,10 +1,13 @@
-import { Client, Intents, Interaction } from "discord.js";
+import { Client, GatewayIntentBits, Partials, Interaction } from "discord.js";
 import config from "../config.json";
 import { processButton } from "./buttons/buttonHandler";
 import { commands } from "./commands/commandHandler";
 import { setupHandler } from "./util/trainLeaveHandler";
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds],
+    partials: [Partials.Channel],
+});
 
 client.once("ready", (client: Client) => {
     console.log(`Ready! Logged in as ${client.user?.tag}`);
@@ -12,7 +15,7 @@ client.once("ready", (client: Client) => {
 });
 
 client.on("interactionCreate", async (interaction: Interaction) => {
-    if (interaction.isCommand()) {
+    if (interaction.isChatInputCommand()) {
         const command = commands.get(interaction.commandName);
 
         if (!command) return;
