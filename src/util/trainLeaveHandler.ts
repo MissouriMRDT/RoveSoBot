@@ -37,14 +37,18 @@ async function setupHandler() {
                 if (data.joined.length == 1) {
                     tags += `${client.users.cache.get(data.joined[0])}`;
                 } else {
-                    data.joined.map((id, index) => {
-                        if (
-                            index != data.joined.length - 1 &&
-                            client.users.cache.get(id)
-                        )
-                            return `${client.users.cache.get(id)}, `;
-                        else return `and ${client.users.cache.get(id)}`;
-                    });
+                    tags += data.joined
+                        .map((id, index) => {
+                            if (
+                                index != data.joined.length - 1 &&
+                                client.users.cache.get(id)
+                            )
+                                if (index == data.joined.length - 2)
+                                    return `${client.users.cache.get(id)} `;
+                                else return `${client.users.cache.get(id)}, `;
+                            else return `and ${client.users.cache.get(id)}`;
+                        })
+                        .join("");
                 }
 
                 if ((train.get("trainType") as string) == "lunch") {
