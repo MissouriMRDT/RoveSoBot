@@ -47,7 +47,7 @@ async function joinTrain(interaction: ButtonInteraction) {
                         return ` and ${client.users.cache.get(
                             id
                         )} have joined- `;
-                })}Hop in!`,
+                })}Hop in! (${data.joined.length + 1} members)`,
             });
         } else if (data.joined.includes(interaction.user.id)) {
             data.joined.splice(data.joined.indexOf(interaction.user.id), 1);
@@ -77,7 +77,7 @@ async function joinTrain(interaction: ButtonInteraction) {
                         return ` and ${client.users.cache.get(
                             id
                         )} have joined- `;
-                })}Hop in!`,
+                })}Hop in! (${data.joined.length + 1} members)`,
             });
         } else {
             interaction.reply({

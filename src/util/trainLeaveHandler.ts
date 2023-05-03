@@ -57,7 +57,9 @@ async function setupHandler() {
                             "All Aboard. Time for food! " +
                                 tags +
                                 (tags.length > 0 ? " meet " : "Meet ") +
-                                `at ${train.get("place") as string}!`
+                                `at ${train.get("place") as string}! (${
+                                    data.joined.length + 1
+                                } members)`
                         )
                         .catch((e) =>
                             console.log("Error sending reply to lunchtrain")
@@ -68,7 +70,9 @@ async function setupHandler() {
                             "Time to party! " +
                                 tags +
                                 (tags.length > 0 ? " meet " : "Meet ") +
-                                `at ${train.get("place") as string}!`
+                                `at ${train.get("place") as string}! (${
+                                    data.joined.length + 1
+                                } members)`
                         )
                         .catch((e) =>
                             console.log("Error sending reply to partytrain")
