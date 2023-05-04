@@ -58,7 +58,7 @@ async function setupHandler() {
                                 tags +
                                 (tags.length > 0 ? " meet " : "Meet ") +
                                 `at ${train.get("place") as string}! (${
-                                    data.joined.length + 1
+                                    data.joined.length
                                 } members)`
                         )
                         .catch((e) =>
@@ -71,7 +71,7 @@ async function setupHandler() {
                                 tags +
                                 (tags.length > 0 ? " meet " : "Meet ") +
                                 `at ${train.get("place") as string}! (${
-                                    data.joined.length + 1
+                                    data.joined.length
                                 } members)`
                         )
                         .catch((e) =>
