@@ -1,20 +1,20 @@
-import { Client, GatewayIntentBits, Partials, Interaction } from "discord.js";
-import config from "../config.json";
-import { processButton } from "./buttons/buttonHandler";
-import { commands } from "./commands/commandHandler";
-import { setupHandler } from "./util/trainLeaveHandler";
+import { Client, GatewayIntentBits, Partials, Interaction } from 'discord.js';
+import config from '../config.json';
+import { processButton } from './buttons/buttonHandler';
+import { commands } from './commands/commandHandler';
+import { setupHandler } from './util/trainLeaveHandler';
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds],
     partials: [Partials.Channel],
 });
 
-client.once("ready", (client: Client) => {
+client.once('ready', (client: Client) => {
     console.log(`Ready! Logged in as ${client.user?.tag}`);
     setupHandler();
 });
 
-client.on("interactionCreate", async (interaction: Interaction) => {
+client.on('interactionCreate', async (interaction: Interaction) => {
     if (interaction.isChatInputCommand()) {
         const command = commands.get(interaction.commandName);
 
@@ -25,7 +25,7 @@ client.on("interactionCreate", async (interaction: Interaction) => {
         } catch (error) {
             console.error(error);
             await interaction.reply({
-                content: "There was an error while executing this command!",
+                content: 'There was an error while executing this command!',
                 ephemeral: true,
             });
         }
@@ -35,7 +35,7 @@ client.on("interactionCreate", async (interaction: Interaction) => {
         } catch (error) {
             console.error(error);
             await interaction.reply({
-                content: "There was an error processing your request!",
+                content: 'There was an error processing your request!',
                 ephemeral: true,
             });
         }

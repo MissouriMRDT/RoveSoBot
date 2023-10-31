@@ -1,9 +1,9 @@
-import { Collection } from "discord.js";
-import { Command } from "./command";
-import { LunchTrain } from "./lunchtrain";
-import { PartyTrain } from "./partytrain";
-import { Ping } from "./ping";
-import { CommandStats } from "./stats";
+import { Collection } from 'discord.js';
+import { Command } from './command';
+import { LunchTrain } from './lunchtrain';
+import { PartyTrain } from './partytrain';
+import { Ping } from './ping';
+import { CommandStats } from './stats';
 
 const commands: Collection<string, Command> = new Collection();
 

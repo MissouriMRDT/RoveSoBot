@@ -1,32 +1,24 @@
-import {
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    ChatInputCommandInteraction,
-} from "discord.js";
-import moment from "moment";
-import { Trains } from "../database/roveSoDatabase";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction } from 'discord.js';
+import moment from 'moment';
+import { Trains } from '../database/roveSoDatabase';
+import { updateMsg } from './trainMessageGen';
 
-async function createTrain(
-    interaction: ChatInputCommandInteraction,
-    time: moment.Moment,
-    type: "party" | "lunch"
-) {
+async function createTrain(interaction: ChatInputCommandInteraction, time: moment.Moment, type: 'party' | 'lunch') {
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-        new ButtonBuilder()
-            .setCustomId("joinTrain")
-            .setLabel("Join/Leave the Train!")
-            .setStyle(ButtonStyle.Primary)
+        new ButtonBuilder().setCustomId('joinTrain').setLabel('Join/Leave the Train!').setStyle(ButtonStyle.Primary)
     );
 
-    await interaction.reply({
-        content: ` ${interaction.user} created a ${
-            type == "lunch" ? "Lunch Train" : "Party Bus"
-        } to ${interaction.options.getString("location")} at ${time.format(
-            "h:mm a"
-        )} on ${time.format("MM/DD/YYYY")}. Join up!`,
-        components: [row],
-    });
+    const dest = interaction.options.getString('location');
+    if (dest)
+        await interaction.reply({
+            content: updateMsg(interaction.user, [], dest, time, type),
+            components: [row],
+        });
+    else
+        interaction.reply({
+            content: 'Unable to create train, no destination given.',
+            ephemeral: true,
+        });
 
     const reply = await interaction.fetchReply();
     const train = await Trains.create({
@@ -38,7 +30,7 @@ async function createTrain(
         conductor: interaction.user.id,
         time: time.unix(),
         message: reply.id,
-        place: interaction.options.getString("location"),
+        place: interaction.options.getString('location'),
     });
     train.save();
 }

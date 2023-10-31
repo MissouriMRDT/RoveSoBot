@@ -1,20 +1,20 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize, DataTypes } from 'sequelize';
 
-const sequelize = new Sequelize("database", "user", "password", {
-    host: "localhost",
-    dialect: "sqlite",
+const sequelize = new Sequelize('database', 'user', 'password', {
+    host: 'localhost',
+    dialect: 'sqlite',
     logging: false,
-    storage: "database.sqlite",
+    storage: 'database.sqlite',
 });
 
 try {
     sequelize.authenticate();
-    console.log("DB Connection established successfully");
+    console.log('DB Connection established successfully');
 } catch (e) {
-    console.error("Unable to connect to DB: ", e);
+    console.error('Unable to connect to DB: ', e);
 }
 
-const Stats = sequelize.define("stats", {
+const Stats = sequelize.define('stats', {
     guild: {
         type: DataTypes.STRING(20),
         primaryKey: true,
@@ -31,9 +31,9 @@ const Stats = sequelize.define("stats", {
     },
 });
 
-const Trains = sequelize.define("train", {
+const Trains = sequelize.define('train', {
     trainType: {
-        type: DataTypes.ENUM("lunch", "party"),
+        type: DataTypes.ENUM('lunch', 'party'),
         allowNull: false,
     },
     guild: {
