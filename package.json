@@ -6,11 +6,11 @@
     "license": "None",
     "type": "commonjs",
     "dependencies": {
-        "discord.js": "^14.9.0",
-        "moment": "^2.29.3",
-        "sequelize": "^6.21.0",
-        "sqlite3": "^5.0.8",
-        "typescript": "^4.7.4"
+        "discord.js": "^14.14.1",
+        "moment": "^2.30.1",
+        "sequelize": "^6.37.1",
+        "sqlite3": "^5.1.7",
+        "typescript": "^4.9.5"
     },
     "scripts": {
         "start": "yarn tsc && node .",
