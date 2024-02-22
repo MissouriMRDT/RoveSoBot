@@ -34,7 +34,8 @@ class LunchTrain extends Command {
             return;
         }
 
-        const time = moment(interaction.options.getString('time'), ['h:m a', 'M-D h:m a'], true);
+        const time = moment(interaction.options.getString('time'), ['h:m a', 'hh:mm a', 'h:mm a', 'M-D hh:mm a'], true);
+        console.log(time);
 
         // If moment parses it as a previous time, add twelve hours.
         if (time < moment()) {
