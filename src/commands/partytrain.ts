@@ -35,7 +35,21 @@ class PartyTrain extends Command {
             return;
         }
 
-        const time = moment(interaction.options.getString('time'), ['h:m a', 'hh:mm a', 'h:mm a', 'M-D hh:mm a'], true);
+        const time = moment(
+            interaction.options.getString('time'),
+            [
+                'h:m a',
+                'hh:mm a',
+                'h:mm a',
+                'M-D h:mm a',
+                'M-D hh:mm a',
+                'M-DD h:mm a',
+                'M-DD hh:mm a',
+                'MM-DD h:mm a',
+                'MM-DD hh:mm a',
+            ],
+            true
+        );
 
         // If moment parses it as a previous time, add twelve hours.
         if (time < moment()) {
