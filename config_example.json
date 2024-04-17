@@ -1,4 +1,5 @@
 {
     "token": "your_token_here",
-    "clientId": "your_id_here"
+    "clientId": "your_id_here",
+    "guildId": "your_test_server_id_here"
 }
