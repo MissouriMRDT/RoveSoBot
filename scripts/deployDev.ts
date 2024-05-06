@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Client, GatewayIntentBits, Partials } from 'discord.js';
+import { Client, GatewayIntentBits, Partials, RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord.js';
 import { commands } from '../src/commands/commandHandler';
 import { exit } from 'process';
 // @ts-ignore Ignore missing file error for Github Actions
@@ -12,7 +12,7 @@ const client = new Client({
 });
 
 client.once('ready', async (client: Client) => {
-    const commandsData = [];
+    const commandsData: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
     for (const command of commands.values()) {
         commandsData.push(command.data.toJSON());
     }
