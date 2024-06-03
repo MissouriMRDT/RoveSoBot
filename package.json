@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "build/src/index.js",
     "author": "ThisIsBrady <bradyh2001@gmail.com>",
-    "license": "None",
+    "license": "GPL-3.0-only",
     "type": "commonjs",
     "dependencies": {
         "discord.js": "^14.15.3",
