@@ -11,7 +11,7 @@
         "moment": "^2.30.1",
         "sequelize": "^6.37.3",
         "sqlite3": "^5.1.7",
-        "typescript": "^5.5.3"
+        "typescript": "^5.5.4"
     },
     "scripts": {
         "start": "yarn tsc && node .",
