@@ -14,6 +14,7 @@
         "typescript": "^5.5.4"
     },
     "scripts": {
+        "prod": "node .",
         "start": "yarn tsc && node .",
         "build": "yarn tsc",
         "deploydev": "yarn tsc && node build/scripts/deployDev.js",

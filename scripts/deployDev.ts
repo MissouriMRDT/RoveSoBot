@@ -19,7 +19,7 @@ client.once('ready', async (client: Client) => {
 
     if (client.application) {
         await client.application.commands
-            .set(commandsData, config.guildId)
+            .set(commandsData, process.env.GUILDID!)
             .then(() => console.log('Updated Dev commands'))
             .catch(console.error);
     } else console.log('No Client app');
@@ -27,4 +27,4 @@ client.once('ready', async (client: Client) => {
     exit();
 });
 
-client.login(config.token);
+client.login(process.env.BOTTOKEN!);

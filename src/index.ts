@@ -43,6 +43,6 @@ client.on('interactionCreate', async (interaction: Interaction) => {
     }
 });
 
-client.login(config.token);
+client.login(process.env.BOTTOKEN);
 
 export { client };
