@@ -1,6 +1,6 @@
 FROM node:lts
 WORKDIR /app
-COPY package.json yarn.lock tsconfig.json .
+COPY package.json yarn.lock tsconfig.json ./
 RUN corepack enable && \
     yarn workspaces focus --production && \
     yarn install --immutable
