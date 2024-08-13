@@ -1,6 +1,4 @@
 import { Client, GatewayIntentBits, Partials, Interaction } from 'discord.js';
-// @ts-ignore Ignore missing file error for Github Actions
-import config from '../config.json';
 import { processButton } from './buttons/buttonHandler';
 import { commands } from './commands/commandHandler';
 import { setupHandler } from './util/trainLeaveHandler';

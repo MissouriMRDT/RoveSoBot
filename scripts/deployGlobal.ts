@@ -3,8 +3,6 @@ import path from 'path';
 import { Client, GatewayIntentBits, Partials, RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord.js';
 import { commands } from '../src/commands/commandHandler';
 import { exit } from 'process';
-// @ts-ignore Ignore missing file error for Github Actions
-import config from '../config.json';
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds],
