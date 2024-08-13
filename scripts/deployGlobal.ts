@@ -27,4 +27,4 @@ client.once('ready', async (client: Client) => {
     exit();
 });
 
-client.login(config.token);
+client.login(process.env.BOTTOKEN!);
