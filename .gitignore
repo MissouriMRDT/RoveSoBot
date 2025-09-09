@@ -4,6 +4,11 @@ build/
 *.sqlite
 .vscode
 
+#Sequelize
+config/
+migrations/
+models/
+
 # Logs
 logs
 *.log
