@@ -10,7 +10,7 @@
         "moment": "^2.30.1",
         "sequelize": "^6.37.5",
         "sqlite3": "^5.1.7",
-        "typescript": "^5.5.4"
+        "typescript": "^5.9.2"
     },
     "scripts": {
         "prod": "node .",
@@ -25,5 +25,5 @@
         "sequelize-cli": "^6.6.3",
         "ts-node-dev": "^2.0.0"
     },
-    "packageManager": "yarn@4.3.1"
+    "packageManager": "yarn@4.5.2"
 }
