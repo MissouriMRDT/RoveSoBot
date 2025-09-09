@@ -25,5 +25,5 @@
         "sequelize-cli": "^6.6.3",
         "ts-node-dev": "^2.0.0"
     },
-    "packageManager": "yarn@4.3.1"
+    "packageManager": "yarn@4.5.2"
 }
