@@ -1,5 +1,4 @@
 import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { BotStats } from '../database/botStats';
 import { Stats } from '../database/roveSoDatabase';
 import { Command } from './command';
 
@@ -30,6 +29,11 @@ class CommandStats extends Command {
                     {
                         name: 'Passengers Departed',
                         value: ('' + guildStats.get('PassengersDeparted')) as string,
+                        inline: true,
+                    },
+                    {
+                        name: 'Trains Canceled',
+                        value: ('' + guildStats.get('canceledTrains')) as string,
                         inline: true,
                     },
                 ]);

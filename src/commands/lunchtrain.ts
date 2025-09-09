@@ -1,10 +1,7 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { CacheType, ChatInputCommandInteraction, CommandInteraction } from 'discord.js';
+import { MessageFlags, SlashCommandBuilder } from 'discord.js';
+import { BaseMessageOptions, CacheType, ChatInputCommandInteraction } from 'discord.js';
 import moment from 'moment';
-import { Trains } from '../database/roveSoDatabase';
 import { Command } from './command';
-import { Op } from 'sequelize';
-import { client } from '../index';
 import { createTrain } from '../util/createTrain';
 class LunchTrain extends Command {
     constructor() {
@@ -29,7 +26,7 @@ class LunchTrain extends Command {
         if (!interaction.inGuild()) {
             interaction.reply({
                 content: 'This command can only be used in servers',
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
             });
             return;
         }
@@ -65,7 +62,7 @@ class LunchTrain extends Command {
         } else {
             interaction.reply({
                 content: 'Invalid date/time string. Make sure you follow the format example in the command help.',
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
             });
         }
     }

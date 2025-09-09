@@ -1,11 +1,12 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, MessageFlags } from 'discord.js';
 import moment from 'moment';
 import { Trains } from '../database/roveSoDatabase';
 import { updateMsg } from './trainMessageGen';
 
 async function createTrain(interaction: ChatInputCommandInteraction, time: moment.Moment, type: 'party' | 'lunch') {
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-        new ButtonBuilder().setCustomId('joinTrain').setLabel('Join/Leave the Train!').setStyle(ButtonStyle.Primary)
+        new ButtonBuilder().setCustomId('joinTrain').setLabel('Join/Leave the Train!').setStyle(ButtonStyle.Primary),
+        new ButtonBuilder().setCustomId('cancelTrain').setLabel('Cancel Train').setStyle(ButtonStyle.Danger)
     );
 
     const dest = interaction.options.getString('location');
@@ -17,7 +18,7 @@ async function createTrain(interaction: ChatInputCommandInteraction, time: momen
     else
         interaction.reply({
             content: 'Unable to create train, no destination given.',
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
         });
 
     const reply = await interaction.fetchReply();

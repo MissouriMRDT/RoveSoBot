@@ -33,4 +33,20 @@ function trainLeaveMsg(conductor: User, joined: User[], dest: string, type: 'lun
     return `${type == 'lunch' ? lunchAboard : partyAboard}${joinedSentence}${membersNote}`;
 }
 
-export { updateMsg, trainLeaveMsg };
+function trainCancelMsg(
+    conductor: User,
+    joined: User[],
+    dest: string,
+    type: 'lunch' | 'party',
+    time: moment.Moment
+): string {
+    const timeFormatted = time.format('h:mm a');
+    const dateFormatted = time.format('MM/DD/YYYY');
+
+    return `${userList([
+        ...joined,
+        conductor,
+    ])} the ${type} train to ${dest} at ${timeFormatted} on ${dateFormatted} has been canceled!`;
+}
+
+export { updateMsg, trainLeaveMsg, trainCancelMsg };

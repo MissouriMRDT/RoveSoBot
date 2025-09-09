@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, SlashCommandOptionsOnlyBuilder } from '@discordjs/builders';
+import { SlashCommandBuilder, SlashCommandOptionsOnlyBuilder } from 'discord.js';
 import { ChatInputCommandInteraction } from 'discord.js';
 
 abstract class Command {

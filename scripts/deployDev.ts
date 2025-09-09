@@ -1,6 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import { Client, GatewayIntentBits, Partials, RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord.js';
+import { ApplicationCommandDataResolvable, Client, GatewayIntentBits, Partials } from 'discord.js';
 import { commands } from '../src/commands/commandHandler';
 import { exit } from 'process';
 
@@ -10,7 +8,7 @@ const client = new Client({
 });
 
 client.once('ready', async (client: Client) => {
-    const commandsData: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
+    const commandsData: ApplicationCommandDataResolvable[] = [];
     for (const command of commands.values()) {
         commandsData.push(command.data.toJSON());
     }

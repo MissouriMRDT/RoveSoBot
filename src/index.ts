@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Partials, Interaction } from 'discord.js';
+import { Client, GatewayIntentBits, Partials, Interaction, MessageFlags } from 'discord.js';
 import { processButton } from './buttons/buttonHandler';
 import { commands } from './commands/commandHandler';
 import { setupHandler } from './util/trainLeaveHandler';
@@ -8,7 +8,7 @@ const client = new Client({
     partials: [Partials.Channel],
 });
 
-client.once('ready', (client: Client) => {
+client.once('clientReady', (client: Client) => {
     console.log(`Ready! Logged in as ${client.user?.tag}`);
     setupHandler();
 });
@@ -25,7 +25,7 @@ client.on('interactionCreate', async (interaction: Interaction) => {
             console.error(error);
             await interaction.reply({
                 content: 'There was an error while executing this command!',
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
             });
         }
     } else if (interaction.isButton()) {
@@ -35,7 +35,7 @@ client.on('interactionCreate', async (interaction: Interaction) => {
             console.error(error);
             await interaction.reply({
                 content: 'There was an error processing your request!',
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
             });
         }
     }

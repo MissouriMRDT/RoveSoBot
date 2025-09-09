@@ -1,4 +1,4 @@
-import { ButtonInteraction, User } from 'discord.js';
+import { ButtonInteraction, MessageFlags, User } from 'discord.js';
 import moment from 'moment';
 import { client } from '..';
 import { Trains } from '../database/roveSoDatabase';
@@ -40,7 +40,7 @@ async function joinTrain(interaction: ButtonInteraction) {
             } else {
                 interaction.reply({
                     content: 'An error occurred!',
-                    ephemeral: true,
+                    flags: MessageFlags.Ephemeral,
                 });
             }
         } else if (
@@ -71,20 +71,20 @@ async function joinTrain(interaction: ButtonInteraction) {
             } else {
                 interaction.reply({
                     content: 'An error occurred!',
-                    ephemeral: true,
+                    flags: MessageFlags.Ephemeral,
                 });
             }
         } else {
             // Else user is conductor, no action.
             interaction.reply({
                 content: "The conductor can't leave",
-                ephemeral: true,
+                flags: MessageFlags.Ephemeral,
             });
         }
     } else {
         interaction.reply({
             content: 'That train already left',
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
         });
     }
 }

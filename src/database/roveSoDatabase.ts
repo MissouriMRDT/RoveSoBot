@@ -29,6 +29,11 @@ const Stats = sequelize.define('stats', {
         allowNull: false,
         defaultValue: 0,
     },
+    canceledTrains: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
 });
 
 const Trains = sequelize.define('train', {

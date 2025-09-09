@@ -5,6 +5,11 @@ namespace BotStats {
         await Stats.findOrCreate({ where: { guild: guildId } });
         await Stats.increment({ trainsDeparted: 1, passengersDeparted: passengers }, { where: { guild: guildId } });
     }
+
+    export async function TrainCancel(guildId: String) {
+        await Stats.findOrCreate({ where: { guild: guildId } });
+        await Stats.increment({ canceledTrains: 1 }, { where: { guild: guildId } });
+    }
 }
 
 export { BotStats };
