@@ -20,7 +20,7 @@
         "deployglobal": "yarn tsc && node build/scripts/deployGlobal.js"
     },
     "devDependencies": {
-        "@types/node": "^24.3.1",
+        "@types/node": "^24.6.1",
         "node-gyp": "^10",
         "sequelize-cli": "^6.6.3",
         "ts-node-dev": "^2.0.0"
