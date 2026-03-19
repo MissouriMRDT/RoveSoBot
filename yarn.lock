@@ -394,7 +394,7 @@ __metadata:
     discord.js: "npm:^14.25.1"
     moment: "npm:^2.30.1"
     node-gyp: "npm:^12"
-    sequelize: "npm:^6.37.7"
+    sequelize: "npm:^6.37.8"
     sequelize-cli: "npm:^6.6.5"
     sqlite3: "npm:^5.1.7"
     ts-node-dev: "npm:^2.0.0"
@@ -902,9 +902,9 @@ __metadata:
   linkType: hard
 
 "dottie@npm:^2.0.6":
-  version: 2.0.6
-  resolution: "dottie@npm:2.0.6"
-  checksum: 10c0/1d99f8b61ae7541b3b70e9cde57308e0044e7bd13e09945b61cf78b303f5c51e3747e5f99c0d519551c5347427c1c1f89aedafe4bf9d9db554c7113772d99b5d
+  version: 2.0.7
+  resolution: "dottie@npm:2.0.7"
+  checksum: 10c0/ba21bbc9b632aa33efa969bde514446a9ec0db4d43d79cac449c1ed17da10f0cb63da7e3d9fcd11935bf95882387ea9b3bf80c58479f2f8c97b318c2a8bcf54d
   languageName: node
   linkType: hard
 
@@ -1629,11 +1629,11 @@ __metadata:
   linkType: hard
 
 "minimatch@npm:^3.1.1":
-  version: 3.1.2
-  resolution: "minimatch@npm:3.1.2"
+  version: 3.1.5
+  resolution: "minimatch@npm:3.1.5"
   dependencies:
     brace-expansion: "npm:^1.1.7"
-  checksum: 10c0/0262810a8fc2e72cca45d6fd86bd349eee435eb95ac6aa45c9ea2180e7ee875ef44c32b55b5973ceabe95ea12682f6e3725cbb63d7a2d1da3ae1163c8b210311
+  checksum: 10c0/2ecbdc0d33f07bddb0315a8b5afbcb761307a8778b48f0b312418ccbced99f104a2d17d8aca7573433c70e8ccd1c56823a441897a45e384ea76ef401a26ace70
   languageName: node
   linkType: hard
 
@@ -2306,9 +2306,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sequelize@npm:^6.37.7":
-  version: 6.37.7
-  resolution: "sequelize@npm:6.37.7"
+"sequelize@npm:^6.37.8":
+  version: 6.37.8
+  resolution: "sequelize@npm:6.37.8"
   dependencies:
     "@types/debug": "npm:^4.1.8"
     "@types/validator": "npm:^13.7.17"
@@ -2345,7 +2345,7 @@ __metadata:
       optional: true
     tedious:
       optional: true
-  checksum: 10c0/e5b9634b3b986bc11a48b2f71badf3f296d86d0d42662b5f5e93a727467a8b15056411f75651cad876295e592a011876e86a41fb929fee703c03b272b5bba880
+  checksum: 10c0/af1c5177e99dd2b65ee21b277e4f5744f28f51c2c3726efca3cae8fc58508cd0c8f377d423f0f4ad2c395f4c8ac41210ea68341eb52c591b93c12246f46a9efb
   languageName: node
   linkType: hard
 
